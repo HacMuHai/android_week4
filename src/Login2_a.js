@@ -1,9 +1,34 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { TextInput } from "react-native-web";
 
 export default function App() {
+    var listAccount = [
+        {name1:"user1",password:"pw1"},
+        {name1:"user2",password:"pw2"},
+        {name1:"user3",password:"pw3"}
+    ]
+    const [showPassWord, setShowPassWord] = useState(true)
+    const [pathEye, setPathEye] = useState(require('../assets/notEye.png'))
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const changeEye = () => {
+        setPathEye(!showPassWord ? require('../assets/eye.png') : require('../assets/notEye.png'))
+        setShowPassWord(!showPassWord)
+    }
+    const pressLogin = ()=>{
+        var user = name
+        var pw = password 
+        listAccount.forEach((v,i)=>{
+            if(v.name1 == user && v.password == pw){
+                alert("Login success")
+                return
+            }
+        })
+        alert("Login fail")
+        return
+    }
     return (
         <LinearGradient
             colors={['#FBCB00', '#BF9A00']}
@@ -14,18 +39,18 @@ export default function App() {
             <SafeAreaView style={styles.containerInputForm}>
                 <View style={styles.inputForm}>
                     <Image style={styles.iconForm} source={require('../assets/user.png')} />
-                    <TextInput placeholder='Name' style={styles.inputName} />
+                    <TextInput placeholder='Name' style={styles.inputName} value={name} onChangeText={(text) => setName(text)} />
                 </View>
                 <View style={styles.inputForm}>
                     <Image style={styles.iconForm} source={require('../assets/lock.png')} />
-                    <TextInput placeholder='Password' style={styles.inputPassword} />
-                    <TouchableOpacity style={styles.btnEye}>
-                        <Image style={styles.iconEye} source={require('../assets/eye.png')} />
+                    <TextInput placeholder='Password' style={styles.inputPassword} value={password} onChangeText={(text) => setPassword(text)} secureTextEntry={showPassWord} />
+                    <TouchableOpacity style={styles.btnEye} onPress={changeEye}>
+                        <Image style={styles.iconEye} source={pathEye} />
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
             <View style={styles.containerBtnLogin}>
-                <TouchableOpacity style={styles.btnLogin}>
+                <TouchableOpacity style={styles.btnLogin} onPress={pressLogin}>
                     <Text style={styles.textBtnLogin}>LOGIN</Text>
                 </TouchableOpacity>
             </View>
@@ -83,7 +108,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     btnEye: {
-        flex:1.2
+        flex: 1.2
     },
     iconEye: {
         flex: 1

@@ -1,5 +1,5 @@
 import React from "react";
-import OpenApp from './src/Tiki_OK' ;
+import OpenApp from './src/Login2_a' ;
 import { StyleSheet,View } from 'react-native';
 
 
