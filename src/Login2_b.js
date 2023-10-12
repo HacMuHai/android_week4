@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { TextInput } from "react-native-web";
 
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
       <View style={styles.content}>
         <View style={styles.contentBox1}>
           <View style={styles.viewTextBox1}>
-          <Text style={styles.textBox1}>Cực kỳ hài lòng</Text>
+            <Text style={styles.textBox1}>Cực kỳ hài lòng</Text>
           </View>
           <View style={styles.starBox1}>
             <Image
@@ -51,11 +52,19 @@ export default function App() {
 
         </View>
         <View style={styles.contentBox2}>
-
+          <TextInput 
+            style={styles.inputContentBox2} 
+            placeholder="Hãy chi sẻ những điều mà bạn thích về sản phẩm"
+            multiline={true} />
+          <TouchableOpacity style={styles.linkContentBox2}>
+            <Text style={styles.textLinkContentBox2}>https://meet.google.com/nsj-ojwi-xpp</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer}>
-
+        <TouchableOpacity style={styles.btnGuifooter}>
+            <Text style={styles.txtBtnGuifooter}>Gửi</Text>
+        </TouchableOpacity>
       </View>
 
     </View>
@@ -69,22 +78,23 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
 
+
   //header
   header: {
-    flex: 1,
+    flex: 1.5,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     marginTop: 10
   },
   boxImgItem: {
     flex: 2,
     // height: 100,
-    justifyContent: "flex-start",
-    alignItems: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10
   },
   imgUsb: {
-    // flex:1,
     width: 55,
     height: 50,
     justifyContent: "center",
@@ -100,61 +110,109 @@ const styles = StyleSheet.create({
 
   //content
   content: {
-    flex: 6,
+    flex: 7,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    gap:15
   },
-  contentBox1:{
+  contentBox1: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    width: "85%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 30
   },
-  viewTextBox1:{
+  viewTextBox1: {
     flex: 1,
     justifyContent: "flex-end",
-    alignItems: "center"
+    alignItems: "center",
   },
-  textBox1:{
-    fontSize: 18,
+  textBox1: {
+    fontSize: 22,
     fontWeight: 700,
-    textAlign: "left"
   },
-  starBox1:{
+  starBox1: {
     flex: 1,
+    gap: 15,
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  imgStar: {
+    width: 45,
+    height: 45
+  },
+  addImgBox1: {
+    flex: 1.5,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderBlockColor: "#1511EB"
   },
-  imgStar:{
+  imgCamere: {
     width: 50,
-    height: 50
+    height: 40
   },
-  addImgBox1:{
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  imgCamere:{
-    width: 20,
-    height: 20
-  },
-  textAddImg:{
-    fontSize: 18,
+  textAddImg: {
+    fontSize: 24,
     fontWeight: 700
   },
 
-  contentBox2:{
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
+  //box2
 
+  contentBox2: {
+    flex: 1,
+    width:"85%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom:10
+
+  },
+  inputContentBox2: {
+    flex: 1,
+    position:"relative",
+    width: "100%",
+    borderWidth: 2,
+    borderRadius: 5,
+    borderBlockColor: "#C4C4C4",
+    color:"#C4C4C4",
+    fontSize:18,
+    fontWeight:700,
+    paddingTop:10,
+    paddingLeft:20,
+    paddingRight:10
+  },
+  linkContentBox2:{
+    position:"absolute",
+    bottom:10,
+    right:20
+  },
+  textLinkContentBox2:{
+    fontSize:14,
+    fontWeight:700
+  },
   //footer
   footer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  }
+  },
+
+  btnGuifooter:{
+    width:"85%",
+    height:45,
+    backgroundColor:"#0d5db6",
+    borderRadius:10,
+    borderColor:"#1511EB",
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  txtBtnGuifooter:{
+    fontSize:22,
+    fontWeight:700,
+    color:"#FFFFFF"
+  },
 
 });
