@@ -1,16 +1,16 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, SafeAreaView, Alert } from 'react-native';
 import { TextInput } from "react-native-web";
 
 export default function App() {
     var listAccount = [
-        {name1:"user1",password:"pw1"},
-        {name1:"user2",password:"pw2"},
-        {name1:"user3",password:"pw3"}
+        {name:"user1",password:"pw1"},
+        {name:"user2",password:"pw2"},
+        {name:"user3",password:"pw3"}
     ]
     const [showPassWord, setShowPassWord] = useState(true)
-    const [pathEye, setPathEye] = useState(require('../assets/notEye.png'))
+    const [pathEye, setPathEye] = useState(require('../assets/eye.png'))
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const changeEye = () => {
@@ -18,16 +18,21 @@ export default function App() {
         setShowPassWord(!showPassWord)
     }
     const pressLogin = ()=>{
-        var user = name
-        var pw = password 
-        listAccount.forEach((v,i)=>{
-            if(v.name1 == user && v.password == pw){
-                alert("Login success")
-                return
-            }
+        // var user = name
+        // var pw = password 
+        const result = listAccount.some(user=>{
+            return user.name === name && user.password === password;
         })
-        alert("Login fail")
-        return
+        console.log(name +" " + password)
+        if (result){
+            console.log("Succ")
+            // Alert.alert("Login successfull!")
+            alert("Login success")
+        } else {
+            console.log("fail")
+            // Alert.alert("Login failed")
+            alert("Login fail")
+        }
     }
     return (
         <LinearGradient
